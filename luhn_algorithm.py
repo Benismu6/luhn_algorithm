@@ -1,4 +1,13 @@
 def verify_card_number(card_number):
+    """
+    Verifies if a credit card number is valid using the Luhn algorithm.
+
+    Args:
+        card_number (str): The credit card number to be verified.
+
+    Returns:
+        bool: True if the card number is valid, False otherwise.
+    """
     sum_of_odd_digits = 0
     card_number_reversed = card_number[::-1]
     odd_digits = card_number_reversed[::2]
@@ -13,10 +22,14 @@ def verify_card_number(card_number):
         if number >= 10:
             number = (number // 10) + (number % 10)
         sum_of_even_digits += number
+
     total = sum_of_odd_digits + sum_of_even_digits
     return total % 10 == 0
 
 def main():
+    """
+    Main function to verify a sample credit card number.
+    """
     card_number = '11-1111-4555-1141'
     card_translation = str.maketrans({'-': '', ' ': ''})
     translated_card_number = card_number.translate(card_translation)
@@ -26,4 +39,5 @@ def main():
     else:
         print('INVALID!')
 
-main()
+if __name__ == '__main__':
+    main()
